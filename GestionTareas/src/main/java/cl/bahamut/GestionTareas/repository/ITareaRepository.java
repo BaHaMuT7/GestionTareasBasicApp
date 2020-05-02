@@ -1,5 +1,9 @@
 package cl.bahamut.GestionTareas.repository;
 
-public class TareaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import cl.bahamut.GestionTareas.entity.Tarea;
+
+public interface ITareaRepository extends JpaRepository<Tarea, String> {
 
 }
