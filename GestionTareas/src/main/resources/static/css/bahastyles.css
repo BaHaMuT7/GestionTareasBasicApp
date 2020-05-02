@@ -1,0 +1,15 @@
+
+/* Incremento de tamaño del container */
+@media only screen and (min-width : 1200px) {
+    .container { max-width: 1980px; }
+}
+
+/* Cambio de color de fondo cuando se pasa el mouse de un nav-item del dropdown */
+.navbar .nav-item .dropdown-menu .dropdown-item:hover{
+    background-color: black;
+}
+
+/* Cambio de color en error en el rut */
+.rut-error{
+    color: red;
+}
