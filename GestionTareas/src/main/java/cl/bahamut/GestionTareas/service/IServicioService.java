@@ -7,7 +7,7 @@ import cl.bahamut.GestionTareas.entity.Servicio;
 public interface IServicioService {
 
 	public List<Servicio> obtenerTodos();
-	public boolean guardar(Servicio Servicio);
+	public boolean guardar(Servicio servicio);
 	public boolean eliminar(int idServicio);
 	public Servicio buscarPorId(int idServicio);
 	

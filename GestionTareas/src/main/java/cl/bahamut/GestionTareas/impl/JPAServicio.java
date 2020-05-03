@@ -19,29 +19,47 @@ public class JPAServicio implements IServicioService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Servicio> obtenerTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return repo.findAll();
+		}
+		catch (Exception ex) {
+			return null;
+		}
 	}
 
 	@Override
 	@Transactional
-	public boolean guardar(Servicio Servicio) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean guardar(Servicio servicio) {
+		try {
+			repo.save(servicio);
+			return true;
+		}
+		catch (Exception ex) {
+			return false;
+		}
 	}
 
 	@Override
 	@Transactional
 	public boolean eliminar(int idServicio) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			repo.deleteById(idServicio);
+			return true;
+		}
+		catch (Exception ex) {
+			return false;
+		}
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public Servicio buscarPorId(int idServicio) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return repo.findById(idServicio).orElse(null);
+		}
+		catch (Exception ex) {
+			return null;
+		}
 	}
 
 }

@@ -2,6 +2,7 @@ package cl.bahamut.GestionTareas.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,8 +18,11 @@ import lombok.Data;
 public class Servicio {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	@Column(name = "id")
 	private Integer id;
+	
+	@Column(name = "nombre")
 	private String nombre;
 	
 	@OneToMany(mappedBy = "servicio")
