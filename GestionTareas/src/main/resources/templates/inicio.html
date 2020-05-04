@@ -29,8 +29,8 @@
         </div>
 
         <div class="form-label-group">
-            <input type="email" id="inputEmail" name="correo" class="form-control" placeholder="correo@dominio.com" required="" autofocus="">
-            <label for="inputEmail">Correo electrónico</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="karina" required="" autofocus="">
+            <label for="inputEmail">Login</label>
         </div>
 
         <div class="form-label-group">
@@ -40,9 +40,7 @@
 
         <input type="hidden" name="accion" value="login">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-        <p align="center"><a href='login?accion=recuperarPass'>¿Olvidó sus credenciales?</a></p>
-
-        <p style="color: red;"></p>
+        <p style="color: red;" th:text="${mensaje}"></p>
         <p class="mt-5 mb-3 text-muted text-center">© Gestión de tareas. BaHaMuT7</p>
     </form>
     </div>

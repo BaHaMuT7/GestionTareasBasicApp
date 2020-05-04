@@ -6,4 +6,6 @@ import cl.bahamut.GestionTareas.entity.Usuario;
 
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
 
+	Usuario findByNombre(String nombre);
+
 }

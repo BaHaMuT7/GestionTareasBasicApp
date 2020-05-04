@@ -31,9 +31,13 @@ public class MappingController {
 		return "servicios";
 	}
 	
-	@GetMapping(value = "plantilla")
-	public String plantilla() {
-		return "plantillabs";
+	@GetMapping(value = "/perfil")
+	public String perfil() {
+		return "perfil";
 	}
-
+	
+	@GetMapping(value = "/tareas")
+	public String tareas() {
+		return "tareas";
+	}
 }

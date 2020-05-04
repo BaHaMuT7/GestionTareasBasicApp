@@ -17,8 +17,24 @@ public class JPAUsuario implements IUsuarioService {
 	@Override
 	@Transactional
 	public boolean guardar(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			repo.save(usuario);
+			return true;
+		}
+		catch (Exception ex) {
+			return false;
+		}
+	}
+	
+	@Override
+	@Transactional(readOnly = true)	
+	public Usuario obtenerPorNombre(String nombre) {
+		try {
+			return repo.findByNombre(nombre);	
+		}
+		catch (Exception ex) {
+			return null;
+		}			
 	}
 
 }
