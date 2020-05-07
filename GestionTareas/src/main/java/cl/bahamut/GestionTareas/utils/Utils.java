@@ -1,11 +1,14 @@
 package cl.bahamut.GestionTareas.utils;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.web.multipart.MultipartFile;
 
 public class Utils {
 	
@@ -61,4 +64,22 @@ public class Utils {
         
         return cadena;
     }
+    
+    
+	public static String guardarArchivo(MultipartFile multiPart, String ruta) {  
+
+		String nombreOriginal = multiPart.getOriginalFilename();
+		nombreOriginal = nombreOriginal.replace(" ", "-");
+		String nombreFinal = Utils.R_GEN() + nombreOriginal;
+		try {
+			File imageFile = new File(ruta+ nombreFinal);
+			System.out.println("Archivo: " + imageFile.getAbsolutePath());
+			multiPart.transferTo(imageFile);
+			return nombreFinal;
+			
+		} catch (IOException e) {
+			System.out.println("Error " + e.getMessage());
+			return null;
+		}
+	}
 }

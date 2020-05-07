@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "gestiontareas.ruta.imagen",
+  "type": "java.lang.String",
+  "description": "Ruta donde se guardan imágenes"
+}]}
