@@ -39,8 +39,7 @@ public class ArchivosController {
 	
 	@GetMapping(value="/gatillarSubida")
 	public String levatarSubida(RedirectAttributes atributos) {
-		atributos.addFlashAttribute("modal", "agregarImgModal");
-		return "redirect:/tareas";
+		return "redirect:/subida";
 	}
 
 }

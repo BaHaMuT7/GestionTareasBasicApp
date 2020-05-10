@@ -142,9 +142,6 @@
                         <div class="card-body">
                             <div id="secImagenes" align="center" class="pb-5">
                                 <a th:href="@{/gatillarSubida}"class="btn btn-primary text-white">Subir imágenes</a>
-                                <ul th:each="imagen: ${imagenes}" class="list-group list-group-horizontal-sm">
-                                    <li th:text="${imagen.url}" class="list-group-item"></li>
-                                </ul>
                             </div>
                             <div id="formu">
                                 <form action="empresa" method="POST" enctype="multipart/form-data">
@@ -200,34 +197,6 @@
             <div class="row no-gutters pt-3" id="footer">
                 <div class="col-md-12 bg-dark text-white text-center py-4">
                     Copyright &copy;Gestión de tareas. BaHaMuT7
-                </div>
-            </div>
-        </div>
-
-        <!-- Modales -->
-        <div class="modal fade" id="agregarImgModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    
-                        <span th:text="${modal}" id="modalValor" style="display: none;"></span>
-                        
-                        <h5 class="modal-title">Explore imagen a subir:</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action="/agregarImagen" method="POST" enctype="multipart/form-data">
-                        <div class="modal-body">
-                        
-                            <label for="imagen">URL de imagen:</label> <br />                
-                            <input type="text" class="form-control" id="imagen" name="imagen"  />
-                        </div>
-                        <div class="modal-footer">
-                            <input type="submit" value="Guardar Cambios" class="btn btn-primary" />
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
