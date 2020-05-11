@@ -1,5 +1,12 @@
-{"properties": [{
-  "name": "gestiontareas.ruta.imagen",
-  "type": "java.lang.String",
-  "description": "Ruta donde se guardan im·genes"
-}]}
+{"properties": [
+  {
+    "name": "gestiontareas.ruta.imagen",
+    "type": "java.lang.String",
+    "description": "Ruta donde se guardan im√°genes"
+  },
+  {
+    "name": "gestiontareas.ruta.principal",
+    "type": "java.lang.String",
+    "description": "Ruta equivalente al final name del proyecto"
+  }
+]}

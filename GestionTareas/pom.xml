@@ -62,6 +62,7 @@
 	</dependencies>
 
 	<build>
+	<finalName>gestion-tareas</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -2,7 +2,10 @@ package cl.bahamut.GestionTareas.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,9 @@ public class MappingController {
 	
 	@Autowired
 	private IServicioService iRepo;
+	
+	@Value("${gestiontareas.ruta.principal}")
+	private String finalName;
 	
 	@GetMapping(value = {"", "/"})
 	public String inicio() {
@@ -36,7 +42,8 @@ public class MappingController {
 	}
 	
 	@GetMapping(value = "/tareas")
-	public String tareas() {
+	public String tareas(HttpSession sesion) {
+		sesion.setAttribute("finalName", finalName);
 		return "tareas";
 	}
 }
