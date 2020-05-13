@@ -40,11 +40,11 @@ public class UsuarioController {
 				
 			} else {
 				atributos.addFlashAttribute("mensaje","Credenciales incorrectas");
-				return "redirect:";
+				return "redirect:/";
 			}
 		} else {
 			atributos.addFlashAttribute("mensaje","Credenciales incorrectas");
-			return "redirect:";
+			return "redirect:/";
 		}		
 	}
 	
@@ -74,6 +74,6 @@ public class UsuarioController {
 	public String cerrarSesion(HttpSession sesion, RedirectAttributes atributos) {
 		sesion.invalidate();
 		atributos.addFlashAttribute("mensaje", "Sesión Cerrada");
-		return "redirect:";
+		return "redirect:/";
 	}
 }

@@ -46,4 +46,9 @@ public class MappingController {
 		sesion.setAttribute("finalName", finalName);
 		return "tareas";
 	}
+	
+	@GetMapping(value="/gatillarSubida")
+	public String levatarSubida() {
+		return "subida";
+	}
 }

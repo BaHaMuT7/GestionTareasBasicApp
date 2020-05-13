@@ -44,7 +44,7 @@
             </div>
             <div class="col-xl-2 pt-2 pr-2 bg-dark">
                 <div align="right">
-                    <a href="/kill" class="btn btn-danger">Salir</a>
+                    <a th:href="@{/kill}" class="btn btn-danger">Salir</a>
                 </div>
             </div>
         </div>
@@ -101,7 +101,7 @@
                     <div class="card-header text-white bg-dark"> Agregar Servicio</div>
                     <div class="card-body">
 
-                        <form action="/agregarServicio" method="POST">							
+                        <form th:action="@{/agregarServicio}" method="POST">							
                             <label for="nombre">Nombre del Servicio/Aplicación:</label>
                             <br>
                             <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="off" required>
@@ -167,7 +167,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="/modificarServicio" method="POST">
+				<form th:action="@{/modificarServicio}" method="POST">
 					<div th:if="${servicioActivo != null}"class="modal-body">
 						<label for="nombre">Nombre del Servicio/Aplicación:</label> <br>
 						<input type="hidden" name="id" th:value="${servicioActivo.id}">
