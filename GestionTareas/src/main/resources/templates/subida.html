@@ -49,9 +49,17 @@
             </div>
         </div>
         <div class="row no-gutters pt-4">
-            <div class="col-md-12">
-                <div class="alert alert-secondary alert-dismissible fade show" role="alert">
-                    Formato mensaje
+            <div th:if="${mensaje == 'successAgregarImagen'}" class="col-md-12">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Imagen agregada exitosamente
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div th:if="${mensaje == 'dangerAgregarImagen'}" class="col-md-12">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    La imagen no se pudo subir
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -59,29 +67,34 @@
             </div>
         </div>
 
-        <div class="row no-gutters pt-3" id="insercion">
-            <div class="col-md-12">
-                <div class="card mb-3">
-                    <div class="card-header text-white bg-dark"> Datos de la Empresa </div>
-                    <div class="card-body" onmouseover="limpiarRutAlFallar()">
+		<div class="row no-gutters pt-3" id="insercion">
+			<div class="col-md-12">
+				<div class="card mb-3">
+					<div class="card-header text-white bg-dark">Subida de
+						imágenes / archivos</div>
+					<div class="card-body">
 
-						<form action="empresa" method="POST" enctype="multipart/form-data">                       
-                            <label for="imagen">URL de imagen:</label> <br />                
-                            <input type="text" class="form-control" id="imagen" name="imagen"  />
-                            
-                            <input type="submit" value="Guardar Cambios" class="btn btn-primary" />
+						<form th:action="@{/agregarImagen}" method="POST"
+							enctype="multipart/form-data" class="pb-3">
+							<label for="imagen">Imagen/archivo:</label> <br /> <input type="file" class="form-control" id="imagen" name="imagen" /> <br />
+
+							<input type="submit" value="Guardar Cambios" class="btn btn-primary" /> <br />
 						</form>
-						
-						<ul th:each="imagen: ${imagenes}"
-							class="list-group list-group-horizontal-sm">
+
+						<ul th:each="imagen: ${imagenes}" class="list-group list-group-horizontal-sm pb-3">
 							<li th:text="${imagen.url}" class="list-group-item"></li>
 						</ul>
-
+						<div class="alert alert-info alert-dismissible fade show" role="alert">
+							Recuerde que al cerrar sesión desaparecerán las URLs provistas
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
 					</div>
-                </div>
-            </div>
-        </div>
-        <div class="row no-gutters pt-3" id="footer">
+				</div>
+			</div>
+		</div>
+		<div class="row no-gutters pt-3" id="footer">
             <div class="col-md-12 bg-dark text-white text-center py-4">
                 Copyright &copy;Gestión de tareas. BaHaMuT7
             </div>

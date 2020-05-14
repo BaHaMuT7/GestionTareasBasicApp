@@ -18,9 +18,7 @@ public class MappingController {
 	
 	@Autowired
 	private IServicioService iRepo;
-	
-	@Value("${gestiontareas.ruta.principal}")
-	private String finalName;
+
 	
 	@GetMapping(value = {"", "/"})
 	public String inicio() {
@@ -43,7 +41,6 @@ public class MappingController {
 	
 	@GetMapping(value = "/tareas")
 	public String tareas(HttpSession sesion) {
-		sesion.setAttribute("finalName", finalName);
 		return "tareas";
 	}
 	
