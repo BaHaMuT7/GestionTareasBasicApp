@@ -148,7 +148,7 @@
                                     <label for="servicio">Servicio:</label>
                                     <br />
                                     <select id="servicio" name="servicio" class="form-control">
-                                        <option value=""></option>
+                                        <option  th:each="servicio: ${servicios}"  th:text="${servicio.nombre}" th:value="${servicio.id}"></option>
                                     </select>
                                     <div id="mjServicio"></div>
                                     <br />

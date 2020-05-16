@@ -46,7 +46,11 @@ public class MappingController {
 	}
 	
 	@GetMapping(value = "/tareas")
-	public String tareas(HttpSession sesion) {
+	public String tareas(HttpSession sesion, Model model) {
+		
+		List<Servicio> servicios = iRepo.obtenerTodos();
+		model.addAttribute("servicios", servicios);
+		
 		return "tareas";
 	}
 	
