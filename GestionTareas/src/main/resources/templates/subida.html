@@ -81,7 +81,7 @@
 							<input type="submit" value="Guardar Cambios" class="btn btn-primary" /> <br />
 						</form>
 
-						<ul th:each="imagen: ${imagenes}" class="list-group list-group-horizontal-sm pb-3">
+						<ul th:each="imagen: ${session.imagenes}" class="list-group list-group-horizontal-sm pb-3">
 							<li th:text="${imagen.url}" class="list-group-item"></li>
 						</ul>
 						<div class="alert alert-info alert-dismissible fade show" role="alert">

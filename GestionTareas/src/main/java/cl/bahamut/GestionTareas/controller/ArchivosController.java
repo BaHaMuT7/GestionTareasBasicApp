@@ -2,7 +2,6 @@ package cl.bahamut.GestionTareas.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +20,6 @@ public class ArchivosController {
 	@Value("${gestiontareas.ruta.imagen}")
 	private String ruta;
 	
-
 	@PostMapping(value="/agregarImagen")
 	public String subirImagen(@RequestParam("imagen") MultipartFile multipart, RedirectAttributes atributos, HttpSession sesion) {
 		
@@ -32,8 +30,8 @@ public class ArchivosController {
 			String nombreImagen = Utils.guardarArchivo(multipart, ruta);
 			
 			if (nombreImagen != null){
-				url = "img/" + nombreImagen;
-				atributos.addAttribute("mensaje","successAgregarImagen");
+				url = (String)sesion.getAttribute("ctx") + "/archivosga/" + nombreImagen;
+				atributos.addFlashAttribute("mensaje","successAgregarImagen");
 				
 				@SuppressWarnings("unchecked")
 				List<Imagen> imagenes = (List<Imagen>)sesion.getAttribute("imagenes");
@@ -54,11 +52,10 @@ public class ArchivosController {
 			else 
 			{
 				url = "error";
-				atributos.addAttribute("mensaje","dangerAgregarImagen");
+				atributos.addFlashAttribute("mensaje","dangerAgregarImagen");
 			}
 		}
 		
-		return "redirect:/subida";
+		return "redirect:/gatillarSubida";
 	}
-
 }

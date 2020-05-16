@@ -70,7 +70,7 @@ public class Utils {
 
 		String nombreOriginal = multiPart.getOriginalFilename();
 		nombreOriginal = nombreOriginal.replace(" ", "-");
-		String nombreFinal = Utils.R_GEN() + nombreOriginal;
+		String nombreFinal = Utils.R_GEN() + "_" + nombreOriginal;
 		try {
 			File imageFile = new File(ruta+ nombreFinal);
 			System.out.println("Archivo: " + imageFile.getAbsolutePath());
