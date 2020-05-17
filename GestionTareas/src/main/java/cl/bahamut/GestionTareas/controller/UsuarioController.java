@@ -35,8 +35,9 @@ public class UsuarioController {
 				udb.setContrasenia(null);
 				
 				sesion.setAttribute("usuarioActivo", udb);
+				atributos.addFlashAttribute("bienvenida", udb.getNombre());
 				
-				return "/tareas";
+				return "redirect:/tareas";
 				
 			} else {
 				atributos.addFlashAttribute("mensaje","Credenciales incorrectas");

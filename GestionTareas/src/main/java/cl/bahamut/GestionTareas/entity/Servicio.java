@@ -27,4 +27,11 @@ public class Servicio {
 	
 	@OneToMany(mappedBy = "servicio")
 	private List<Tarea> tareas;
+
+	public Servicio() {
+	}
+
+	public Servicio(Integer id) {
+		this.id = id;
+	}
 }

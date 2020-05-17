@@ -5,10 +5,17 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.web.multipart.MultipartFile;
+
+import cl.bahamut.GestionTareas.entity.Tarea;
+import cl.bahamut.GestionTareas.entity.Usuario;
 
 public class Utils {
 	
@@ -82,4 +89,19 @@ public class Utils {
 			return null;
 		}
 	}
+	
+	
+	public static Date stringToDate(String fecha) {
+		
+		String patron = "yyyy-MM-dd HH:mm";
+		SimpleDateFormat sdf = new SimpleDateFormat(patron);
+		
+		try {
+			return sdf.parse(fecha);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}				
+	}
+	
 }

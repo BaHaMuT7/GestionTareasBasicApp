@@ -6,14 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import cl.bahamut.GestionTareas.entity.Servicio;
+import cl.bahamut.GestionTareas.entity.Tarea;
+import cl.bahamut.GestionTareas.entity.Usuario;
 import cl.bahamut.GestionTareas.service.IServicioService;
+import cl.bahamut.GestionTareas.service.ITareaService;
 
 @Controller
 public class MappingController {
@@ -22,7 +23,7 @@ public class MappingController {
 	private IServicioService iRepo;
 	
 	@Autowired
-	private ApplicationContext appContext;
+	private ITareaService tRepo;
 
 	
 	@GetMapping(value = {"", "/"})
@@ -50,6 +51,9 @@ public class MappingController {
 		
 		List<Servicio> servicios = iRepo.obtenerTodos();
 		model.addAttribute("servicios", servicios);
+		
+		List<Tarea> tareas = tRepo.obtenerTareasPorUsuario((Usuario)sesion.getAttribute("usuarioActivo"));
+		sesion.setAttribute("tareasUsuario", tareas);
 		
 		return "tareas";
 	}

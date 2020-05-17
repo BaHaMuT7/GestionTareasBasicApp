@@ -2,6 +2,7 @@ package cl.bahamut.GestionTareas.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -31,7 +32,11 @@ public class Tarea {
 	private Date fecha;
 	private Date plazo;
 	private Boolean cumplida;
+	
+	@Column(name = "pedidapor")
 	private String pedidaPor;
+	
+	@Column(name = "ejecutadapor")
 	private String ejecutadaPor;
 
 }

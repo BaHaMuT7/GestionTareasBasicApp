@@ -24,5 +24,10 @@ public class Usuario {
 	
 	@OneToMany(mappedBy = "usuario")
 	private List<Tarea> tareas;
+
+	public Usuario() { }	
 	
+	public Usuario(Integer id) {
+		this.id = id;
+	}	
 }

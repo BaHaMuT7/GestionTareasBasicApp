@@ -50,12 +50,24 @@
             </div>
             <div class="row no-gutters pt-4">
                 <div class="col-md-12">
-                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                        <span>Bienvenido</span>&nbsp;<span th:text="${session.usuarioActivo.nombre}"></span>
+                    <div th:if="${mensaje == 'successAgregarTarea'}" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <span>La tarea se agregó correctamente</span>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <div th:if="${mensaje == 'successAgregarTarea'}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <span>No se pudo agregar la tarea</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div> 
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <span>Bienvenido</span>&nbsp;<span th:text="${bienvenida}"></span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>                  
                 </div>
             </div>
             <div class="row no-gutters pt-3" id="tareasPendientes">
@@ -78,15 +90,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                    <tr th:if="${!tarea.cumplida}"  th:each="tarea: ${session.tareasUsuario}">
+                                        <th scope="row" th:text="${tarea.codigo}"></th>
+                                        <td th:text="${tarea.servicio.nombre}"></td>
+                                        <td th:text="${tarea.descripcion}"></td>
+                                        <td th:text="${tarea.fecha}"></td>
+                                        <td th:text="${tarea.plazo}"></td>
+                                        <td th:text="${tarea.cumplida}"></td>
+                                        <td th:text="${tarea.pedidaPor}"></td>
+                                        <td th:text="${tarea.ejecutadaPor}"></td>
                                         <td align="center">
                                             <a href="" class="btn btn-primary">Ver detalles</a> &nbsp; <a href="" class="btn btn-warning">Modificar</a> &nbsp;
                                             <a href="" class="btn btn-success">Completar</a>
@@ -144,7 +156,7 @@
                                 <a th:href="@{/gatillarSubida}" class="btn btn-primary text-white" target="_blank">Subir imágenes</a>
                             </div>
                             <div id="formu">
-                                <form action="empresa" method="POST" enctype="multipart/form-data">
+                                <form th:action="@{/agregarTarea}" method="POST" enctype="multipart/form-data">
                                     <label for="servicio">Servicio:</label>
                                     <br />
                                     <select id="servicio" name="servicio" class="form-control">
@@ -186,7 +198,8 @@
                                     <input type="text" class="form-control" id="ejecutadaPor" name="ejecutadaPor" th:value="${session.usuarioActivo.nombre}" autocomplete="off" required disabled />
                                     <div id="mjEjecutadaPor"></div>
                                     <br />
-
+									
+									<input type="hidden" name="sendEjecutadaPor" th:value="${session.usuarioActivo.nombre}" />
                                     <input type="submit" class="btn bg-dark text-white" value="Agregar tarea" />
                                 </form>
                             </div>
