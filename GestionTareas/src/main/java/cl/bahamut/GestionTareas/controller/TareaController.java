@@ -4,6 +4,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -58,8 +60,22 @@ public class TareaController {
 		} else {
 			atributos.addAttribute("mensaje", "dangerAgregarTarea");
 			return "redirect:/tareas";			
-		}
+		}		
+	}
+	
+	@GetMapping(value="/explorar/{codigoTarea}")
+	public String explorarTarea(@PathVariable String codigoTarea, HttpSession sesion, RedirectAttributes atributos) {
 		
+		Tarea tarea = repo.buscarPorCodigo(codigoTarea);
+		
+		if (tarea != null) {
+			sesion.setAttribute("tareaActiva", tarea);
+			atributos.addFlashAttribute("modal", "cuadroTarea");
+		} else {
+			atributos.addFlashAttribute("mensaje", "dangerObtenerTarea");
+		}
+	
+		return "redirect:/tareas";
 	}
 
 }
