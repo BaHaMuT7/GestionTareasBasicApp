@@ -71,11 +71,28 @@ public class TareaController {
 		if (tarea != null) {
 			sesion.setAttribute("tareaActiva", tarea);
 			atributos.addFlashAttribute("modal", "cuadroTarea");
+			atributos.addFlashAttribute("fActiveBody", "general");
 		} else {
 			atributos.addFlashAttribute("mensaje", "dangerObtenerTarea");
 		}
 	
 		return "redirect:/tareas";
 	}
+	
+	@GetMapping(value="/explorar/detalle/{codigoTarea}")
+	public String explorarDetalleTarea(@PathVariable String codigoTarea, HttpSession sesion, RedirectAttributes atributos) {
+		
+		Tarea tarea = repo.buscarPorCodigo(codigoTarea);
+		
+		if (tarea != null) {
+			sesion.setAttribute("tareaActiva", tarea);
+			atributos.addFlashAttribute("modal", "cuadroTarea");
+			atributos.addFlashAttribute("fActiveBody", "detalle");
+		} else {
+			atributos.addFlashAttribute("mensaje", "dangerObtenerTarea");
+		}
+	
+		return "redirect:/tareas";
+	}	
 
 }
