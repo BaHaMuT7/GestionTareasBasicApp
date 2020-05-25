@@ -53,10 +53,4 @@ public class JPATarea implements ITareaService {
 		return repo.findById(codigo).orElse(null);
 	}
 
-	@Override
-	@Transactional(readOnly = true)
-	public List<Tarea> obtenerTareasPorUsuario(Usuario usuario) {
-		return repo.findByUsuario(usuario);
-	}
-
 }

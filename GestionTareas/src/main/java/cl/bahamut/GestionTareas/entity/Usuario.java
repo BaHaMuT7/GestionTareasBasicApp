@@ -3,6 +3,7 @@ package cl.bahamut.GestionTareas.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class Usuario {
 	private String nombre;
 	private String contrasenia;
 	
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
 	private List<Tarea> tareas;
 
 	public Usuario() { }	

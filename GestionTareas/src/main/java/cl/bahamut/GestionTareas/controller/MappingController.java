@@ -52,7 +52,10 @@ public class MappingController {
 		List<Servicio> servicios = iRepo.obtenerTodos();
 		model.addAttribute("servicios", servicios);
 		
-		List<Tarea> tareas = tRepo.obtenerTareasPorUsuario((Usuario)sesion.getAttribute("usuarioActivo"));
+		//List<Tarea> tareas = tRepo.obtenerTareasPorUsuario((Usuario)sesion.getAttribute("usuarioActivo"));
+		Usuario usu = (Usuario)sesion.getAttribute("usuarioActivo");
+		List<Tarea> tareas = usu.getTareas();
+				
 		sesion.setAttribute("tareasUsuario", tareas);
 		
 		return "tareas";

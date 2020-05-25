@@ -13,7 +13,7 @@
         <link href="css/jquery.datetimepicker.css" rel="stylesheet" />
         <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="css/bahastyles.css" />
-        <link href="css/prism.css" rel="stylesheet" type="text/css" />
+        <link th:href="@{/css/prism.css}" rel="stylesheet" type="text/css" />
 
         <title>Aplicación de Gestión de Tareas por BaHaMuT7</title>
     </head>
@@ -196,7 +196,7 @@
                 </div>
             </div>
             <!-- Modales -->
-            <div class="modal fade" id="cuadroTarea" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div th:if="${session.tareaActiva != null}" class="modal fade" id="cuadroTarea" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -337,8 +337,8 @@
         </script>
 
         <script src="js/bahascript.js"></script>
-        <script src="js/tinymce/tinymce.min.js" type="text/javascript"></script>
-        <script src="js/prism.js" type="text/javascript"></script>
+        <script th:src="@{/js/tinymce/tinymce.min.js}" type="text/javascript"></script>
+        <script th:src="@{/js/prism.js}" type="text/javascript"></script>
         <script>
             tinymce.init({
                 language: "es_MX",
