@@ -94,5 +94,40 @@ public class TareaController {
 	
 		return "redirect:/tareas";
 	}	
+	
+	
+	@GetMapping(value="/completar/{codigoTarea}")
+	public String completarTarea(@PathVariable String codigoTarea, RedirectAttributes atributos) {
+		
+		Tarea tarea = repo.buscarPorCodigo(codigoTarea);
+		tarea.setCumplida(true);
+		
+		boolean resultado = repo.guardar(tarea);
+		
+		if (resultado) {
+			atributos.addFlashAttribute("mensaje", "successCompletarTarea");			
+		} else {
+			atributos.addFlashAttribute("mensaje", "dangerCompletarTarea");
+		}
+	
+		return "redirect:/tareas";
+	}	
+	
+	@GetMapping(value="/reasignar/{codigoTarea}")
+	public String reasignarTarea(@PathVariable String codigoTarea, RedirectAttributes atributos) {
+		
+		Tarea tarea = repo.buscarPorCodigo(codigoTarea);
+		tarea.setCumplida(false);
+		
+		boolean resultado = repo.guardar(tarea);
+		
+		if (resultado) {
+			atributos.addFlashAttribute("mensaje", "successReasignarTarea");			
+		} else {
+			atributos.addFlashAttribute("mensaje", "dangerReasignarTarea");
+		}
+	
+		return "redirect:/tareas";
+	}		
 
 }

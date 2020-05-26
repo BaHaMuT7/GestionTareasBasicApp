@@ -63,11 +63,35 @@
                         </button>
                     </div>
                     <div th:if="${mensaje == 'dangerObtenerTarea'}" class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <span>No se encpntró la tarea que busca</span>
+                        <span>No se encontró la tarea que busca</span>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <div th:if="${mensaje == 'successCompletarTarea'}" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <span>¡Tarea completada!</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div th:if="${mensaje == 'dangerCompletarTarea'}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <span>No se pudo declarar la tarea como completada</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>  
+                    <div th:if="${mensaje == 'successReasignarTarea'}" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <span>¡Tarea reasignada!</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div th:if="${mensaje == 'dangerReasignarTarea'}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <span>No se pudo reasignar la tarea</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>                                                                                
                 </div>
             </div>
             <div class="row no-gutters pt-3" id="tareasPendientes">
@@ -90,7 +114,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:if="${!tarea.cumplida}" th:each="tarea: ${session.tareasUsuario}">
+                                    <tr th:each="tarea: ${session.tareasUsuario}" th:if="${!tarea.cumplida}" >
                                         <th scope="row" th:text="${tarea.codigo}"></th>
                                         <td th:text="${tarea.servicio.nombre}"></td>
                                         <td th:text="${tarea.descripcion}"></td>
@@ -101,7 +125,7 @@
                                         <td th:text="${tarea.ejecutadaPor}"></td>
                                         <td align="center">
                                             <a th:href="@{/explorar/} + ${tarea.codigo}" class="btn btn-primary">Ver detalles</a> &nbsp; <a href="" class="btn btn-warning">Modificar</a> &nbsp;
-                                            <a href="" class="btn btn-success">Completar</a>
+                                            <a th:href="@{/completar/} + ${tarea.codigo}" class="btn btn-success">Completar</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -130,7 +154,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr th:if="${tarea.cumplida}" th:each="tarea: ${session.tareasUsuario}">
+                                    <tr  th:each="tarea: ${session.tareasUsuario}" th:if="${tarea.cumplida}">
                                         <th scope="row" th:text="${tarea.codigo}"></th>
                                         <td th:text="${tarea.servicio.nombre}"></td>
                                         <td th:text="${tarea.descripcion}"></td>
@@ -139,7 +163,7 @@
                                         <td th:text="${tarea.cumplida}"></td>
                                         <td th:text="${tarea.pedidaPor}"></td>
                                         <td th:text="${tarea.ejecutadaPor}"></td>
-                                        <td align="center"><a href="" class="btn btn-primary">Ver detalles</a> &nbsp; <a href="" class="btn btn-danger">Reasignar</a></td>
+                                        <td align="center"><a th:href="@{/explorar/} + ${tarea.codigo}" class="btn btn-primary">Ver detalles</a> &nbsp; <a th:href="@{/reasignar/} + ${tarea.codigo}"class="btn btn-danger">Reasignar</a></td>
                                     </tr>
                                 </tbody>
                             </table>

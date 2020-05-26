@@ -1,4 +1,4 @@
-package cl.bahamut.GestionTareas.controller;
+ package cl.bahamut.GestionTareas.controller;
 
 import java.util.List;
 
@@ -24,7 +24,6 @@ public class MappingController {
 	
 	@Autowired
 	private ITareaService tRepo;
-
 	
 	@GetMapping(value = {"", "/"})
 	public String inicio(HttpSession sesion, HttpServletRequest request) {
@@ -52,9 +51,8 @@ public class MappingController {
 		List<Servicio> servicios = iRepo.obtenerTodos();
 		model.addAttribute("servicios", servicios);
 		
-		//List<Tarea> tareas = tRepo.obtenerTareasPorUsuario((Usuario)sesion.getAttribute("usuarioActivo"));
 		Usuario usu = (Usuario)sesion.getAttribute("usuarioActivo");
-		List<Tarea> tareas = usu.getTareas();
+		List<Tarea> tareas = tRepo.obtenerTareasPorUsuario(usu);
 				
 		sesion.setAttribute("tareasUsuario", tareas);
 		
