@@ -62,119 +62,12 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div th:if="${mensaje == 'dangerObtenerTarea'}" class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <span>No se encontró la tarea que busca</span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div th:if="${mensaje == 'successCompletarTarea'}" class="alert alert-success alert-dismissible fade show" role="alert">
-                        <span>¡Tarea completada!</span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div th:if="${mensaje == 'dangerCompletarTarea'}" class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <span>No se pudo declarar la tarea como completada</span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>  
-                    <div th:if="${mensaje == 'successReasignarTarea'}" class="alert alert-success alert-dismissible fade show" role="alert">
-                        <span>¡Tarea reasignada!</span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div th:if="${mensaje == 'dangerReasignarTarea'}" class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <span>No se pudo reasignar la tarea</span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>                                                                                
-                </div>
-            </div>
-            <div class="row no-gutters pt-3" id="tareasPendientes">
-                <div class="col-md-12">
-                    <div class="card mb-3">
-                        <div class="card-header text-white bg-dark">Lista de tareas pendientes</div>
-                        <div class="card-body">
-                            <table id="pendientes" class="table table-hover table-responsive-xl table-dark ts">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Código</th>
-                                        <th scope="col">Servicio</th>
-                                        <th scope="col">Descripcón</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Plazo</th>
-                                        <th scope="col">¿Terminada?</th>
-                                        <th scope="col">Pedida por</th>
-                                        <th scope="col">Ejecutada por</th>
-                                        <th scope="col">Operaciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="tarea: ${session.tareasUsuario}" th:if="${!tarea.cumplida}" >
-                                        <th scope="row" th:text="${tarea.codigo}"></th>
-                                        <td th:text="${tarea.servicio.nombre}"></td>
-                                        <td th:text="${tarea.descripcion}"></td>
-                                        <td th:text="${tarea.fecha}"></td>
-                                        <td th:text="${tarea.plazo}"></td>
-                                        <td th:text="${tarea.cumplida}"></td>
-                                        <td th:text="${tarea.pedidaPor}"></td>
-                                        <td th:text="${tarea.ejecutadaPor}"></td>
-                                        <td align="center">
-                                            <a th:href="@{/explorar/} + ${tarea.codigo}" class="btn btn-primary">Ver detalles</a> &nbsp; <a th:href="@{/modTarea/{codigo} (codigo=${tarea.codigo})}" class="btn btn-warning">Modificar</a> &nbsp;
-                                            <a th:href="@{/completar/} + ${tarea.codigo}" class="btn btn-success">Completar</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row no-gutters pt-3" id="tareasCompletadas">
-                <div class="col-md-12">
-                    <div class="card mb-3">
-                        <div class="card-header text-white bg-dark">Lista de tareas completadas</div>
-                        <div class="card-body">
-                            <table id="completadas" class="table table-hover table-responsive-xl table-dark ts">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Código</th>
-                                        <th scope="col">Servicio</th>
-                                        <th scope="col">Descripcón</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Plazo</th>
-                                        <th scope="col">¿Terminada?</th>
-                                        <th scope="col">Pedida por</th>
-                                        <th scope="col">Ejecutada por</th>
-                                        <th scope="col">Operaciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr  th:each="tarea: ${session.tareasUsuario}" th:if="${tarea.cumplida}">
-                                        <th scope="row" th:text="${tarea.codigo}"></th>
-                                        <td th:text="${tarea.servicio.nombre}"></td>
-                                        <td th:text="${tarea.descripcion}"></td>
-                                        <td th:text="${tarea.fecha}"></td>
-                                        <td th:text="${tarea.plazo}"></td>
-                                        <td th:text="${tarea.cumplida}"></td>
-                                        <td th:text="${tarea.pedidaPor}"></td>
-                                        <td th:text="${tarea.ejecutadaPor}"></td>
-                                        <td align="center"><a th:href="@{/explorar/} + ${tarea.codigo}" class="btn btn-primary">Ver detalles</a> &nbsp; <a th:href="@{/reasignar/} + ${tarea.codigo}"class="btn btn-danger">Reasignar</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="row no-gutters pt-3" id="insercionTareas">
                 <div class="col-md-12">
                     <div class="card mb-3">
-                        <div class="card-header text-white bg-dark">Ingresar tarea</div>
+                        <div class="card-header text-white bg-dark">Modificar tarea</div>
                         <div class="card-body">
                             <div id="secImagenes" align="center" class="pb-5">
                                 <a th:href="@{/gatillarSubida}" class="btn btn-primary text-white" target="_blank">Subir imágenes</a>
@@ -183,31 +76,32 @@
                                 <form th:action="@{/agregarTarea}" method="POST" enctype="multipart/form-data">
                                     <label for="servicio">Servicio:</label> <br />
                                     <select id="servicio" name="servicio" class="form-control">
-                                        <option th:each="servicio: ${servicios}" th:text="${servicio.nombre}" th:value="${servicio.id}"></option>
+                                        <option th:each="servicio: ${servicios}" th:text="${servicio.nombre}" th:value="${servicio.id}" th:if="${servicio.id == tareaActiva.servicio.id}" selected></option>
+                                        <option th:each="servicio: ${servicios}" th:text="${servicio.nombre}" th:value="${servicio.id}" th:if="${servicio.id != tareaActiva.servicio.id}"></option>
                                     </select>
                                     <div id="mjServicio"></div>
                                     <br />
                                     <label for="descripcion">Descripción:</label> <br />
-                                    <input type="text" class="form-control" id="descripcion" name="descripcion" autocomplete="off" required />
+                                    <input type="text" class="form-control" id="descripcion" name="descripcion" autocomplete="off" th:value="${tareaActiva.descripcion}" required />
                                     <div id="mjDescripcion"></div>
                                     <br />
                                     <label for="cuerpo">Cuerpo:</label> <br />
-                                    <textarea id="cuerpo" name="cuerpo" class="form-control" rows="20"></textarea>
+                                    <textarea id="cuerpo" name="cuerpo" class="form-control" rows="20" th:text="${tareaActiva.cuerpo}"></textarea>
                                     <div id="mjCuerpo"></div>
                                     <br />
                                     <label for="fecha">Fecha de solicitud: </label> <br />
-                                    <input type="datetime" class="form-control" name="fecha" id="fecha" /> <br />
+                                    <input type="datetime" class="form-control" name="fecha" th:value="${tareaActiva.fecha}"  id="fecha" /> <br />
                                     <label for="plazo">Plazo: </label> <br />
-                                    <input type="datetime" class="form-control" name="plazo" id="plazo" /> <br />
+                                    <input type="datetime" class="form-control" name="plazo" id="plazo" th:value="${tareaActiva.plazo}"  /> <br />
                                     <label for="pedidaPor">Pedida por:</label> <br />
-                                    <input type="text" class="form-control" id="pedidaPor" name="pedidaPor" autocomplete="off" required />
+                                    <input type="text" class="form-control" id="pedidaPor" name="pedidaPor" autocomplete="off" th:value="${tareaActiva.pedidaPor}" required />
                                     <div id="mjPedidaPor"></div>
                                     <br />
                                     <label for="ejecutadaPor">Ejecutada por:</label> <br />
-                                    <input type="text" class="form-control" id="ejecutadaPor" name="ejecutadaPor" th:value="${session.usuarioActivo.nombre}" autocomplete="off" required disabled />
+                                    <input type="text" class="form-control" id="ejecutadaPor" name="ejecutadaPor" th:value="${tareaActiva.ejecutadaPor}"  autocomplete="off" required disabled />
                                     <div id="mjEjecutadaPor"></div>
                                     <br />
-                                    <input type="hidden" name="sendEjecutadaPor" th:value="${session.usuarioActivo.nombre}" /> <input type="submit" class="btn bg-dark text-white" value="Agregar tarea" />
+                                    <input type="hidden" name="sendEjecutadaPor" th:value="${tareaActiva.ejecutadaPor}" /> <input type="submit" class="btn bg-dark text-white" value="Modificar tarea" />
                                 </form>
                             </div>
                         </div>
@@ -217,60 +111,6 @@
             <div class="row no-gutters pt-3" id="footer">
                 <div class="col-md-12 bg-dark text-white text-center py-4">
                     Copyright &copy;Gestión de tareas. BaHaMuT7
-                </div>
-            </div>
-            <!-- Modales -->
-            <div th:if="${session.tareaActiva != null}" class="modal fade" id="cuadroTarea" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <span th:text="${modal}" id="modalValor" style="display: none;"></span>
-                            <h5 class="modal-title"><span>Revisión de tarea</span> &nbsp; <span th:text="${session.tareaActiva.codigo}"></span></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div th:if="${fActiveBody == 'general'}"class="card text-center">
-                                <div class="card-header">
-                                    <ul class="nav nav-tabs card-header-tabs">
-                                        <li class="nav-item"><a class="nav-link active" th:href="@{/explorar/} + ${session.tareaActiva.codigo}" >Información</a></li>
-                                        <li class="nav-item"><a class="nav-link" th:href="@{/explorar/detalle/} + ${session.tareaActiva.codigo}" >Notas y Evidencias</a></li>
-                                    </ul>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group">
-                                        <li class="list-group-item active">Información escencial de la tarea</li>
-                                        <li class="list-group-item"><b>Código:</b> &nbsp; <span th:text="${session.tareaActiva.codigo}"></span></li>
-                                        <li class="list-group-item"><b>Servicio:</b> &nbsp; <span th:text="${session.tareaActiva.servicio.nombre}"></span></li>
-                                        <li class="list-group-item"><b>Descripción:</b> &nbsp; <span th:text="${session.tareaActiva.descripcion}"></span></li>
-                                        <li class="list-group-item"><b>Ingreso:</b> &nbsp; <span th:text="${session.tareaActiva.fecha}"></span></li>
-                                        <li class="list-group-item"><b>Cumplida:</b> &nbsp; <span th:text="${session.tareaActiva.cumplida}"></span></li>
-                                        <li class="list-group-item"><b>Solicitada por:</b> &nbsp; <span th:text="${session.tareaActiva.pedidaPor}"></span></li>
-                                        <li class="list-group-item"><b>Ejecutada por:</b> &nbsp; <span th:text="${session.tareaActiva.ejecutadaPor}"></span></li>
-                                        <li class="list-group-item bg-danger text-white"><b>Plazo:</b> &nbsp; <span th:text="${session.tareaActiva.plazo}"></span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div th:if="${fActiveBody == 'detalle'}"class="card">
-                                <div class="card-header">
-                                    <ul class="nav nav-tabs card-header-tabs">
-                                        <li class="nav-item"><a class="nav-link" th:href="@{/explorar/} + ${session.tareaActiva.codigo}" >Información</a></li>
-                                        <li class="nav-item"><a class="nav-link active" th:href="@{/explorar/detalle/} + ${session.tareaActiva.codigo}" >Notas y Evidencias</a></li>
-                                    </ul>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                    	<div id="cuerpoActivo" th:utext="${session.tareaActiva.cuerpo}" class="col-lg-12">
-                                    	</div>
-                                    </div>
-                                </div>
-                            </div>                            
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

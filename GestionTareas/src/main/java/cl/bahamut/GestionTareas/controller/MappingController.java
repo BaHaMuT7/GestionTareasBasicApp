@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import cl.bahamut.GestionTareas.entity.Servicio;
 import cl.bahamut.GestionTareas.entity.Tarea;
 import cl.bahamut.GestionTareas.entity.Usuario;
@@ -34,8 +34,7 @@ public class MappingController {
 	@GetMapping(value = "/servicios")
 	public String servicios(Model model) {
 		
-		List<Servicio> servicios = iRepo.obtenerTodos();
-		model.addAttribute("servicios", servicios);
+		colocarServiciosModel(model);
 		
 		return "servicios";
 	}
@@ -48,8 +47,7 @@ public class MappingController {
 	@GetMapping(value = "/tareas")
 	public String tareas(HttpSession sesion, Model model) {
 		
-		List<Servicio> servicios = iRepo.obtenerTodos();
-		model.addAttribute("servicios", servicios);
+		colocarServiciosModel(model);
 		
 		Usuario usu = (Usuario)sesion.getAttribute("usuarioActivo");
 		List<Tarea> tareas = tRepo.obtenerTareasPorUsuario(usu);
@@ -63,4 +61,26 @@ public class MappingController {
 	public String levatarSubida() {
 		return "subida";
 	}
+	
+	@GetMapping(value="/modTarea/{codigo}")
+	public String modificarTarea(@PathVariable(value="codigo") String codigo, Model model) {
+		
+		Tarea tarea = tRepo.buscarPorCodigo(codigo);
+		
+		if (tarea != null) {
+			model.addAttribute("tareaActiva", tarea);
+			
+			colocarServiciosModel(model);
+			
+			return "modtareas";
+		} else {
+			return "tareas";
+		}
+	}
+
+	private void colocarServiciosModel(Model model) {
+		List<Servicio> servicios = iRepo.obtenerTodos();
+		model.addAttribute("servicios", servicios);
+	}
+	
 }
