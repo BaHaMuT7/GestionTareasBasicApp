@@ -10,10 +10,12 @@
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css" />
         <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-        <link href="css/jquery.datetimepicker.css" rel="stylesheet" />
-        <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+        <link th:href="@{/css/jquery.datetimepicker.css}" rel="stylesheet" />
+        <link th:href="@{/css/bootstrap-datetimepicker.css}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="css/bahastyles.css" />
         <link th:href="@{/css/prism.css}" rel="stylesheet" type="text/css" />
+        
+      
 
         <title>Aplicación de Gestión de Tareas por BaHaMuT7</title>
     </head>
@@ -22,7 +24,7 @@
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-xl-12" style="background-color: yellow;">
-                    <h1>Banner</h1>
+                   <img th:src="@{/img/banner-pilar.png}" class="img-fluid" alt="Gestión de tareas">
                 </div>
             </div>
 
@@ -73,12 +75,12 @@
                                 <a th:href="@{/gatillarSubida}" class="btn btn-primary text-white" target="_blank">Subir imágenes</a>
                             </div>
                             <div id="formu">
-                                <form th:action="@{/agregarTarea}" method="POST" enctype="multipart/form-data">
+                                <form th:action="@{/modTarea}" method="POST" enctype="multipart/form-data">
                                     <label for="servicio">Servicio:</label> <br />
                                     <select id="servicio" name="servicio" class="form-control">
                                         <option th:each="servicio: ${servicios}" th:text="${servicio.nombre}" th:value="${servicio.id}" th:if="${servicio.id == tareaActiva.servicio.id}" selected></option>
                                         <option th:each="servicio: ${servicios}" th:text="${servicio.nombre}" th:value="${servicio.id}" th:if="${servicio.id != tareaActiva.servicio.id}"></option>
-                                    </select>
+                                    </select>                                   
                                     <div id="mjServicio"></div>
                                     <br />
                                     <label for="descripcion">Descripción:</label> <br />
@@ -88,11 +90,11 @@
                                     <label for="cuerpo">Cuerpo:</label> <br />
                                     <textarea id="cuerpo" name="cuerpo" class="form-control" rows="20" th:text="${tareaActiva.cuerpo}"></textarea>
                                     <div id="mjCuerpo"></div>
-                                    <br />
-                                    <label for="fecha">Fecha de solicitud: </label> <br />
-                                    <input type="datetime" class="form-control" name="fecha" th:value="${tareaActiva.fecha}"  id="fecha" /> <br />
-                                    <label for="plazo">Plazo: </label> <br />
-                                    <input type="datetime" class="form-control" name="plazo" id="plazo" th:value="${tareaActiva.plazo}"  /> <br />
+                                    <br />   
+                                    <label for="modFecha">Fecha de solicitud: </label> <br />
+                                    <input type="datetime" class="form-control" name="fecha" id="modFecha" th:value="${tareaActiva.fecha}" /> <br />
+                                    <label for="modPlazo">Plazo: </label> <br />
+                                    <input type="datetime" class="form-control" name="plazo" id="modPlazo" th:value="${tareaActiva.plazo}" /> <br />                                                                    
                                     <label for="pedidaPor">Pedida por:</label> <br />
                                     <input type="text" class="form-control" id="pedidaPor" name="pedidaPor" autocomplete="off" th:value="${tareaActiva.pedidaPor}" required />
                                     <div id="mjPedidaPor"></div>
@@ -101,7 +103,12 @@
                                     <input type="text" class="form-control" id="ejecutadaPor" name="ejecutadaPor" th:value="${tareaActiva.ejecutadaPor}"  autocomplete="off" required disabled />
                                     <div id="mjEjecutadaPor"></div>
                                     <br />
-                                    <input type="hidden" name="sendEjecutadaPor" th:value="${tareaActiva.ejecutadaPor}" /> <input type="submit" class="btn bg-dark text-white" value="Modificar tarea" />
+                                    
+                                    <input type="hidden" name="sendEjecutadaPor" th:value="${tareaActiva.ejecutadaPor}" /> 
+                                    <input type="hidden" name="cumplida" th:value="${tareaActiva.cumplida}" /> 
+                                    <input type="hidden" name="codigo" th:value="${tareaActiva.codigo}" /> 
+                                    
+                                    <input type="submit" class="btn bg-dark text-white" value="Modificar tarea" />
                                 </form>
                             </div>
                         </div>
@@ -179,24 +186,6 @@
                         sSortDescending: ": Activar para ordenar la columna de manera descendente",
                     },
                 },
-            });
-        </script>
-
-        <script src="js/bootstrap-datetimepicker.js" type="text/javascript"></script>
-
-        <script src="js/locales/bootstrap-datetimepicker.es.js" type="text/javascript"></script>
-
-        <script>
-            $("#fecha").datetimepicker({
-                isRTL: false,
-                autoclose: true,
-                language: "es",
-            });
-
-            $("#plazo").datetimepicker({
-                isRTL: false,
-                autoclose: true,
-                language: "es",
             });
         </script>
 
@@ -291,7 +280,25 @@
         </script>             
         <script type="text/javascript">
         	$('#cuerpoActivo').find('img').addClass('img-fluid')
-        </script>        
+        </script>
+        
+        
+        <script th:src="@{/js/bootstrap-datetimepicker.js}" type="text/javascript"></script>
+        <script th:src="@{/js/locales/bootstrap-datetimepicker.es.js}" type="text/javascript"></script>
+        <script>
+            $("#modFecha").datetimepicker({
+                isRTL: false,
+                autoclose: true,
+                language: "es",
+            });
+
+            $("#modPlazo").datetimepicker({
+                isRTL: false,
+                autoclose: true,
+                language: "es",
+            });
+        </script>          
+                
     </body>
 </html>
 
