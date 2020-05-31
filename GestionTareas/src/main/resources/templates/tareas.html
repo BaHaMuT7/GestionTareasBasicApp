@@ -263,11 +263,11 @@
                                         <li class="list-group-item"><b>Código:</b> &nbsp; <span th:text="${session.tareaActiva.codigo}"></span></li>
                                         <li class="list-group-item"><b>Servicio:</b> &nbsp; <span th:text="${session.tareaActiva.servicio.nombre}"></span></li>
                                         <li class="list-group-item"><b>Descripción:</b> &nbsp; <span th:text="${session.tareaActiva.descripcion}"></span></li>
-                                        <li class="list-group-item"><b>Ingreso:</b> &nbsp; <span th:text="${session.tareaActiva.fecha}"></span></li>
+                                        <li class="list-group-item"><b>Ingreso:</b> &nbsp; <span th:text="${#dates.format(session.tareaActiva.fecha, 'dd-MM-yyyy HH:mm')}"></span></li>
                                         <li class="list-group-item"><b>Cumplida:</b> &nbsp; <span th:text="${session.tareaActiva.cumplida}"></span></li>
                                         <li class="list-group-item"><b>Solicitada por:</b> &nbsp; <span th:text="${session.tareaActiva.pedidaPor}"></span></li>
                                         <li class="list-group-item"><b>Ejecutada por:</b> &nbsp; <span th:text="${session.tareaActiva.ejecutadaPor}"></span></li>
-                                        <li class="list-group-item bg-danger text-white"><b>Plazo:</b> &nbsp; <span th:text="${session.tareaActiva.plazo}"></span></li>
+                                        <li class="list-group-item bg-danger text-white"><b>Plazo:</b> &nbsp; <span th:text="${#dates.format(session.tareaActiva.plazo, 'dd-MM-yyyy HH:mm')}"></span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -380,7 +380,7 @@
         </script>
 
         <script src="js/bahascript.js"></script>
-        <script th:src="@{/js/tinymce/tinymce.min.js}" type="text/javascript"></script>
+        <script src="https://cdn.tiny.cloud/1/dm27mjbbxsa2mjfblwpoe8xleqe9labnpavhjn0gi8gbmxc1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <script th:src="@{/js/prism.js}" type="text/javascript"></script>
         <script>
             tinymce.init({

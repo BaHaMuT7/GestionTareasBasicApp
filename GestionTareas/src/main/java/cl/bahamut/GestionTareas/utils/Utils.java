@@ -76,7 +76,6 @@ public class Utils {
 		String nombreFinal = Utils.R_GEN() + "_" + nombreOriginal;
 		try {
 			File imageFile = new File(ruta+ nombreFinal);
-			System.out.println("Archivo: " + imageFile.getAbsolutePath());
 			multiPart.transferTo(imageFile);
 			return nombreFinal;
 			
@@ -99,5 +98,29 @@ public class Utils {
 			return null;
 		}				
 	}
+	
+	
+    public static String obtenerStringCorrectoCuerpo(String cuerpo, String containsURL, String fileFolder) {
+    	
+        if (cuerpo.contains(containsURL)){
+            return cuerpo;
+        } else {
+        	String nCuerpo = cuerpo.replaceAll(fileFolder, containsURL);
+        	
+            return nCuerpo;
+        }
+    }  	
+    
+    public static String obtenerStringCorrectoCuerpoMod(String cuerpo, String containsURL, String fileFolder) {
+
+    	
+        if (cuerpo.contains("../")){
+        	String nCuerpo = cuerpo.replaceAll("../archivosga/", containsURL);      
+            return nCuerpo;
+        } else {
+        	String nCuerpo = cuerpo.replaceAll(fileFolder, containsURL);  
+            return nCuerpo;
+        }
+    }      
 	
 }

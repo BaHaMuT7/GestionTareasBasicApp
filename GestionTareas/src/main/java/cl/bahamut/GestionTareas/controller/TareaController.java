@@ -39,8 +39,10 @@ public class TareaController {
 		
 		Tarea tarea = new Tarea();
 		
+		String nuevoCuerpo = Utils.obtenerStringCorrectoCuerpo(cuerpo, (String)sesion.getAttribute("ctxFile"), (String)sesion.getAttribute("fileFolder"));
+		
 		tarea.setDescripcion(descripcion);
-		tarea.setCuerpo(cuerpo);
+		tarea.setCuerpo(nuevoCuerpo);
 		tarea.setFecha(Utils.stringToDate(fecha));
 		tarea.setPlazo(Utils.stringToDate(plazo));
 		tarea.setServicio(new Servicio(servicio));
@@ -80,9 +82,11 @@ public class TareaController {
 		
 		Tarea tarea = new Tarea();
 		
+		String nuevoCuerpo = Utils.obtenerStringCorrectoCuerpoMod(cuerpo, (String)sesion.getAttribute("ctxFile"), (String)sesion.getAttribute("fileFolder"));	
+		
 		tarea.setDescripcion(descripcion);
 		tarea.setCodigo(codigo);
-		tarea.setCuerpo(cuerpo);
+		tarea.setCuerpo(nuevoCuerpo);
 		tarea.setFecha(Utils.stringToDate(fecha));
 		tarea.setPlazo(Utils.stringToDate(plazo));
 		tarea.setServicio(new Servicio(servicio));
@@ -170,6 +174,6 @@ public class TareaController {
 		}
 	
 		return "redirect:/tareas";
-	}		
+	}	
 
 }

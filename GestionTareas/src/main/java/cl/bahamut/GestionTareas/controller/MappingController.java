@@ -25,9 +25,14 @@ public class MappingController {
 	@Autowired
 	private ITareaService tRepo;
 	
+	public final static String webctx = "http://www.bahatech.cl";
+	public final static String fileFolder = "archivosga/"; /* Agregar slash al comienzo desde home*/
+	
 	@GetMapping(value = {"", "/"})
 	public String inicio(HttpSession sesion, HttpServletRequest request) {
-		sesion.setAttribute("ctx", request.getContextPath());
+		sesion.setAttribute("ctx", webctx + request.getContextPath());
+		sesion.setAttribute("ctxFile", webctx + request.getContextPath() + "/" + fileFolder); 
+		sesion.setAttribute("fileFolder", fileFolder); 
 		return "inicio";
 	}
 	

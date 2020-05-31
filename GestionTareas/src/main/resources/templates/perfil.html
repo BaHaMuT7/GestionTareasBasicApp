@@ -65,7 +65,7 @@
                     <div class="card-header text-white bg-dark"> Modificar Contraseña</div>
                     <div class="card-body">
 
-                        <form action="/modificarPass" method="POST">
+                        <form th:action="@{/modificarPass}" method="POST">
                         
                         		<b>Usuario:</b> &nbsp; <span th:text="${session.usuarioActivo.nombre}"></span> <br> <br>
 
